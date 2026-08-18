@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Атма — Студия йоги</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- БАЗОВЫЕ СТИЛИ --- */
+        :root {
+            --bg-color: #F9F7F2;
+            --text-color: #3D3D3D;
+            --accent-color: #6B8E78; /* Мягкий зелёный */
+            --accent-light: #E8F0EB;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Фото на фон */
+            background-image: linear-gradient(rgba(249, 247, 242, 0.85), rgba(249, 247, 242, 0.85)), 
+                      url('background.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; display: block; }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Анимация появления */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 1. ШАПКА --- */
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(235, 235, 235, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        nav a:hover { color: var(--accent-color); }
+
+        /* --- 2. ПЕРВЫЙ БЛОК (HERO) --- */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .hero-image-wrapper {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+            display: block;
+        }
+
+
+
+        /* Текст поверх фото */
+        .hero-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: ;color: white;  /* Белый текст */
+            z-index: 2;
+            width: 90%;
+        }
+
+        .hero-text-overlay .subtitle {
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.9);
+            display: block;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-text-overlay h1 {
+            font-size: 94px;
+            color: white;
+            margin-top: -40px;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.6);
+        }
+
+        .hero-text-overlay .tagline {
+            font-family: 'Montserrat', sans-serif;  /* обычный шрифт, не курсив */
+            font-size: 30px;
+            font-weight: 300;  /* тонкий, элегантный */
+            letter-spacing: 2px;  /* разрядка букв — выглядит дорого */
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-transform: uppercase;  /* заглавные буквы */
+        }
+
+        /* --- 3. ВИДЫ ЙОГИ --- */
+        .yoga-types {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--accent-color);
+        }
+        .types-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .type-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+        .type-card:hover { transform: translateY(-5px); }
+        .trainer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .trainer-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .trainer-info span {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .type-desc {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .type-image {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 200px;
+        }
+        .type-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- 4. ПРЕПОДАВАТЕЛИ --- */
+        .teachers {
+            padding: 80px 0;
+            background: var(--accent-light);
+        }
+        .teacher-card {
+            display: flex;
+            gap: 40px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+        .teacher-photo {
+            flex-shrink: 0;
+            width: 250px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .teacher-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .teacher-info h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+        .teacher-info p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .teacher-info .achievements {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* --- 5. СТУДИЯ (ГАЛЕРЕЯ) --- */
+        .studio {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .studio-address {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .gallery {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+        .gallery::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+        .gallery-item {
+            flex: 0 0 350px;
+            height: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            scroll-snap-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- 6. КОНТАКТЫ --- */
+        .contacts {
+            padding: 60px 0;
+            background: var(--accent-color);
+            color: var(--white);
+            text-align: center;
+        }
+        .contacts h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        .contacts-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 18px;
+        }
+        .contacts-info a {
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+        }
+        .contacts-info a:hover {
+            border-bottom-color: var(--white);
+        }
+
+        /* --- АДАПТИВ (МОБИЛЬНАЯ ВЕРСИЯ) --- */
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; gap: 15px; }
+            nav ul { gap: 15px; font-size: 14px; }
+            .hero-text h1 { font-size: 36px; }
+            .types-grid { grid-template-columns: 1fr; }
+            .teacher-card { flex-direction: column; text-align: center; }
+            .teacher-photo { width: 200px; height: 250px; margin: 0 auto; }
+            .contacts-info { flex-direction: column; gap: 15px; }
+            .gallery-item { flex: 0 0 280px; height: 200px; }
+            @media (max-width: 768px) {
+            .hero-image-wrapper img {
+                height: 500px;
+            }
+            .hero-text-overlay h1 {
+                font-size: 48px;
+            }
+            .hero-text-overlay .tagline {
+                font-size: 18px;
+            }
+        }
+            }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ШАПКА -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">АТМА</div>
+            <nav>
+                <ul>
+                    <li><a href="#yoga">Йога</a></li>
+                    <li><a href="#teachers">Тренеры</a></li>
+                    <li><a href="#studio">Студия</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. ПЕРВЫЙ БЛОК -->
+    <section class="hero fade-in">
+    <div class="hero-image-wrapper">
+        <img src="main.jpg" alt="Йога">
+        <!--<div class="hero-overlay"></div>-->
+        <div class="hero-text-overlay">
+            <div class="subtitle">Студия йоги</div>
+            <h1>АТМА</h1>
+            <p class="tagline">Путь к гармонии начинается здесь</p>
+        </div>
+    </div>
+    </section>
+
+    <!-- 3. ВИДЫ ЙОГИ -->
+    <section id="yoga" class="yoga-types container fade-in">
+        <h2 class="section-title">Направления практики</h2>
+        <div class="types-grid">
+            <!-- Карточка 1 -->
+            <div class="type-card">
+                <div class="trainer-info">
+                    <img src="y1.jpg" alt="Тренер">
+                    <span>Анна Смирнова</span>
+                </div>
+                <p class="type-desc">Классическая практика для укрепления тела и духа. Подходит для всех уровней подготовки.</p>
+                <div class="type-image">
+                    <img src="n1.jpg" alt="Хатха йога">
+                </div>
+            </div>
+            <!-- Карточка 2 -->
+            <div class="type-card">
+                <div class="trainer-info">
+                    <img src="y2.jpg" alt="Тренер">
+                    <span>Мария Волкова</span>
+                </div>
+                <p class="type-desc">Динамичная практика, где движение синхронизировано с дыханием. Отлично снимает стресс.</p>
+                <div class="type-image">
+                    <img src="n2.jpg" alt="Виньяса">
+                </div>
+            </div>
+            <!-- Карточка 3 -->
+            <div class="type-card">
+                <div class="trainer-info">
+                    <img src="y3.jpg" alt="Тренер">
+                    <span>Дмитрий Орлов</span>
+                </div>
+                <p class="type-desc">Глубокая работа с мышцами и фасциями. Увеличивает гибкость и подвижность суставов.</p>
+                <div class="type-image">
+                    <img src="n3.jpg" alt="Йин йога">
+                </div>
+            </div>
+            <!-- Карточка 4 -->
+            <div class="type-card">
+                <div class="trainer-info">
+                    <img src="y4.jpg" alt="Тренер">
+                    <span>Елена Ким</span>
+                </div>
+                <p class="type-desc">Практика осознанности и дыхательных техник для достижения внутреннего покоя.</p>
+                <div class="type-image">
+                    <img src="n4.jpg" alt="Медитация">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ПРЕПОДАВАТЕЛИ -->
+    <section id="teachers" class="teachers fade-in">
+        <div class="container">
+            <h2 class="section-title">Наши тренеры</h2>
+            
+            <div class="teacher-card">
+                <div class="teacher-photo">
+                    <img src="woman.jpg" alt="Анна">
+                </div>
+                <div class="teacher-info">
+                    <h3>Анна Смирнова</h3>
+                    <p>Практикует йогу более 10 лет. Проходила обучение в Индии (Ришикеш) по традиционным системам Хатха-йоги.</p>
+                    <p>Верит, что йога доступна каждому, независимо от возраста и уровня физической подготовки.</p>
+                    <div class="achievements">✨ Сертификат Yoga Alliance RYT-500 | 8 лет преподавания</div>
+                </div>
+            </div>
+
+            <div class="teacher-card">
+                <div class="teacher-photo">
+                    <img src="man.jpg" alt="Дмитрий">
+                </div>
+                <div class="teacher-info">
+                    <h3>Дмитрий Орлов</h3>
+                    <p>Специалист по анатомии движения и йин-йоге. Помогает ученикам безопасно работать с травмами и ограничениями.</p>
+                    <p>Ведёт авторские воркшопы по мобильности суставов и здоровью спины.</p>
+                    <div class="achievements">✨ Диплом по спортивной реабилитации | Автор 3-х методичек</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. СТУДИЯ -->
+    <section id="studio" class="studio container fade-in">
+        <h2 class="section-title">Пространство студии</h2>
+        <p class="studio-address">г. Москва, ул. Гармонии, д. 12, этаж 2</p>
+        
+        <div class="gallery">
+            <div class="gallery-item"><img src="g1.jpg" alt="Зал 1"></div>
+            <div class="gallery-item"><img src="g2.jpg" alt="Зал 2"></div>
+            <div class="gallery-item"><img src="g3.jpg" alt="Деталь"></div>
+            <div class="gallery-item"><img src="g4.jpg" alt="Атмосфера"></div>
+            <div class="gallery-item"><img src="g5.jpg" alt="Йога 3"></div>
+        </div>
+    </section>
+
+    <!-- 6. КОНТАКТЫ -->
+    <section id="contacts" class="contacts fade-in">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <div class="contacts-info">
+                <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+                <a href="https://t.me/atma_yoga" target="_blank">Telegram: @atma_yoga</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- СКРИПТ ДЛЯ ПЛАВНОЙ АНИМАЦИИ ПРИ СКРОЛЛЕ -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

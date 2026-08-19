@@ -314,7 +314,6 @@
 
         /* --- АДАПТИВ (МОБИЛЬНАЯ ВЕРСИЯ) --- */
 @media (max-width: 768px) {
-    /* Шапка: логотип слева, меню справа */
     .header-inner { 
         flex-direction: row;
         justify-content: space-between;
@@ -328,14 +327,12 @@
     nav ul { 
         gap: 12px; 
         font-size: 12px;
-        flex-wrap: nowrap;
     }
     
     nav a {
         font-size: 11px;
     }
     
-    /* Уменьшаем отступы между блоками */
     .hero {
         padding: 40px 15px;
     }
@@ -344,12 +341,20 @@
         height: 400px;
     }
     
+    /* РАЗНОСИМ ТЕКСТЫ ПОДАЛЬШЕ ДРУГ ОТ ДРУГА */
+    .hero-text-overlay .subtitle {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    
     .hero-text-overlay h1 {
-        font-size: 42px;
+        font-size: 38px;
+        margin-top: 0;
+        margin-bottom: 15px;
     }
     
     .hero-text-overlay .tagline {
-        font-size: 16px;
+        font-size: 14px;
     }
     
     .yoga-types,
@@ -404,15 +409,7 @@
         flex: 0 0 250px; 
         height: 180px; 
     }
-    .hero-text-overlay .subtitle {
-                margin-bottom: 15px;
-            }
-            .hero-text-overlay .h1 {
-                font-size: 38px;
-                margin-top: 0;
-            }
 }
-
             }
     </style>
 </head>

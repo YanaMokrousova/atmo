@@ -313,26 +313,99 @@
         }
 
         /* --- АДАПТИВ (МОБИЛЬНАЯ ВЕРСИЯ) --- */
-        @media (max-width: 768px) {
-            .header-inner { flex-direction: column; gap: 15px; }
-            nav ul { gap: 15px; font-size: 14px; }
-            .hero-text h1 { font-size: 36px; }
-            .types-grid { grid-template-columns: 1fr; }
-            .teacher-card { flex-direction: column; text-align: center; }
-            .teacher-photo { width: 200px; height: 250px; margin: 0 auto; }
-            .contacts-info { flex-direction: column; gap: 15px; }
-            .gallery-item { flex: 0 0 280px; height: 200px; }
-            @media (max-width: 768px) {
-            .hero-image-wrapper img {
-                height: 500px;
-            }
-            .hero-text-overlay h1 {
-                font-size: 48px;
-            }
-            .hero-text-overlay .tagline {
-                font-size: 18px;
-            }
-        }
+@media (max-width: 768px) {
+    /* Шапка: логотип слева, меню справа */
+    .header-inner { 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        font-size: 22px;
+    }
+    
+    nav ul { 
+        gap: 12px; 
+        font-size: 12px;
+        flex-wrap: nowrap;
+    }
+    
+    nav a {
+        font-size: 11px;
+    }
+    
+    /* Уменьшаем отступы между блоками */
+    .hero {
+        padding: 40px 15px;
+    }
+    
+    .hero-image-wrapper img {
+        height: 400px;
+    }
+    
+    .hero-text-overlay h1 {
+        font-size: 42px;
+    }
+    
+    .hero-text-overlay .tagline {
+        font-size: 16px;
+    }
+    
+    .yoga-types,
+    .teachers,
+    .studio {
+        padding: 50px 0;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    .types-grid { 
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .teacher-card { 
+        flex-direction: column; 
+        text-align: center;
+        padding: 25px;
+        margin-bottom: 20px;
+    }
+    
+    .teacher-photo { 
+        width: 180px; 
+        height: 220px; 
+        margin: 0 auto; 
+    }
+    
+    .teacher-info h3 {
+        font-size: 22px;
+    }
+    
+    .contacts {
+        padding: 40px 20px;
+    }
+    
+    .contacts h2 {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+    
+    .contacts-info { 
+        flex-direction: column; 
+        gap: 12px;
+        font-size: 16px;
+    }
+    
+    .gallery-item { 
+        flex: 0 0 250px; 
+        height: 180px; 
+    }
+}
+
             }
     </style>
 </head>
